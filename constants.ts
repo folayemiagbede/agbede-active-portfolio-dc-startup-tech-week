@@ -156,7 +156,7 @@ export const PROJECTS_DATA: ProjectCategory[] = [
                     'Executive briefings translating technical requirements',
                 ],
                 impact: 'Established agency-wide AI governance protocols enabling responsible innovation while protecting vulnerable populations. Framework adopted as model for task force operations.'
-        },
+              },
     }
 ];
 
