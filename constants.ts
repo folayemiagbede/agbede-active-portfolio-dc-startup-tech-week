@@ -157,18 +157,6 @@ export const PROJECTS_DATA: ProjectCategory[] = [
                 ],
                 impact: 'Established agency-wide AI governance protocols enabling responsible innovation while protecting vulnerable populations. Framework adopted as model for task force operations.'
             },
-            {
-                title: 'Northern Triangle Task Force After-Action Review',
-                tags: ['Qualitative Research', 'Policy Analysis', 'Stakeholder Engagement', 'Knowledge Management'],
-                challenge: 'Federal task force operated under intense public scrutiny with limited institutional memory, unclear delegation structures, and inadequate systems for coordination across multiple agencies and regions.',
-                solution: [
-                    '28+ stakeholder interviews across bureaus and global missions',
-                    'Systematic analysis of human capital and DEIA implications',
-                    'Development of workforce forecasting models',
-                    'Creation of knowledge management protocols',
-                ],
-                impact: 'Delivered 15+ actionable recommendations adopted agency-wide, improving authorization pathways and establishing best practices for future emergency response operations.'
-            }
         ]
     }
 ];
