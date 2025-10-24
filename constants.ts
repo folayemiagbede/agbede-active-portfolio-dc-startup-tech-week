@@ -25,7 +25,7 @@ export const EXPERTISE_DATA: ExpertiseItem[] = [
     points: [
       'AI policy frameworks for federal agencies',
       'Plain-language intake forms for AI application review',
-      'Cross-bureau coordination on AI ethics and equity',
+      'Cross-team coordination on AI ethics and equity',
       'Risk assessment for API integration and security policy',
       'Logic model design for accessible technology systems',
       'Executive briefings on AI implementation strategy',
@@ -118,7 +118,7 @@ export const PROJECTS_DATA: ProjectCategory[] = [
             {
                 title: 'CyncUp™: Heritage Bike Route Planner',
                 tags: ['Civic Tech', 'Cultural Preservation', 'GIS/Mapping', 'Python', 'In Development'],
-                challenge: 'African American heritage sites face erasure through gentrification and organized attacks on accurate historical placemaking. Traditional tourism apps don\'t center Black heritage or integrate economic support with cultural preservation.',
+                challenge: 'African American heritage sites face erasure through gentrification and organized attacks on accurate historical placemaking. Many Black cyclists also bring people together from across the country for meaningful events that center Black heritage and integrate economic support with cultural preservation.',
                 solution: [
                     'Bike route planning using publicly available spatial data',
                     'Maps cycling routes connecting heritage sites with small businesses',
@@ -156,7 +156,8 @@ export const PROJECTS_DATA: ProjectCategory[] = [
                     'Executive briefings translating technical requirements',
                 ],
                 impact: 'Established agency-wide AI governance protocols enabling responsible innovation while protecting vulnerable populations. Framework adopted as model for task force operations.'
-            },
+        },
+    }
 ];
 
 export const BACKGROUND_DATA: BackgroundItem[] = [
