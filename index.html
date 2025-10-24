@@ -1,27 +1,994 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Folayemi Agbede | Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      html {
-        font-size: 17px;
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folayemi Agbede | Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --text-primary: #1a1a1a;
+      --text-secondary: #666;
+      --accent: #0066cc;
+      --bg-light: #fafafa;
+      --border-light: #e5e5e5;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: white;
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 3rem 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      max-width: 900px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      letter-spacing: -2px;
+    }
+
+    .hero .subtitle {
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--text-primary);
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      border: 2px solid var(--text-primary);
+    }
+
+    .hero-cta:hover {
+      background: white;
+      color: var(--text-primary);
+    }
+
+    /* Section Styling */
+    section {
+      padding: 8rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      margin-bottom: 4rem;
+      letter-spacing: -1px;
+    }
+
+    .section-intro {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin-bottom: 5rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* Expertise Grid */
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .expertise-item {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .expertise-item:nth-child(1) { animation-delay: 0.1s; }
+    .expertise-item:nth-child(2) { animation-delay: 0.2s; }
+    .expertise-item:nth-child(3) { animation-delay: 0.3s; }
+    .expertise-item:nth-child(4) { animation-delay: 0.4s; }
+    .expertise-item:nth-child(5) { animation-delay: 0.5s; }
+    .expertise-item:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
-  }
-}
-</script>
+    }
+
+    .expertise-item h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+    }
+
+    .expertise-item ul {
+      list-style: none;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .expertise-item li {
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .expertise-item li:last-child {
+      border-bottom: none;
+    }
+
+    /* Projects */
+    .projects-section {
+      background: var(--bg-light);
+    }
+
+    .project-category {
+      margin-bottom: 6rem;
+    }
+
+    .category-title {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .project {
+      margin-bottom: 5rem;
+      padding-bottom: 5rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .project:last-child {
+      border-bottom: none;
+    }
+
+    .project-header {
+      margin-bottom: 2rem;
+    }
+
+    .project h3 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 400;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border-light);
+      color: var(--text-secondary);
+    }
+
+    .project-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .project-block h4 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .project-block p, .project-block ul {
+      color: var(--text-primary);
+      line-height: 1.8;
+    }
+
+    .project-block ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .project-block li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .project-block li:before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .project-link {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      transition: opacity 0.3s;
+    }
+
+    .project-link:hover {
+      opacity: 0.7;
+    }
+
+    /* Background Section */
+    .background-grid {
+      display: grid;
+      gap: 4rem;
+    }
+
+    .background-item {
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .background-item:last-child {
+      border-bottom: none;
+    }
+
+    .background-item h3 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .background-meta {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .background-item p {
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .background-item ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .background-item li {
+      padding: 0.6rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+
+    .background-item li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* Research Section */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+    }
+
+    .research-item {
+      padding: 2rem;
+      border: 1px solid var(--border-light);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .research-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .research-item h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.5px;
+    }
+
+    .research-meta {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .research-item p {
+      color: var(--text-primary);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      text-align: center;
+      padding: 10rem 3rem;
+    }
+
+    .contact-section h2 {
+      margin-bottom: 2rem;
+    }
+
+    .contact-section p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      border: 2px solid var(--text-primary);
+    }
+
+    .contact-btn-primary {
+      background: var(--text-primary);
+      color: white;
+    }
+
+    .contact-btn-primary:hover {
+      background: white;
+      color: var(--text-primary);
+    }
+
+    .contact-btn-secondary {
+      background: white;
+      color: var(--text-primary);
+    }
+
+    .contact-btn-secondary:hover {
+      background: var(--text-primary);
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem;
+      text-align: center;
+      border-top: 1px solid var(--border-light);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero {
+        padding: 6rem 1.5rem 3rem;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      .expertise-grid,
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-content {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-section {
+        padding: 6rem 1.5rem;
+      }
+    }
+  </style>
 </head>
-  <body class="bg-white text-[#1a1a1a]">
-    <div id="root"></div>
-  </body>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Folayemi Agbede</div>
+      <ul class="nav-links">
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#background">Background</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Strategic Operations Leader & AI Governance Expert</h1>
+      <p class="subtitle">Bridging technology, policy, and social impact through operations excellence, computational social science, and equity-centered design.</p>
+      <a href="#projects" class="hero-cta">View Work</a>
+    </div>
+  </section>
+
+  <section id="expertise">
+    <h2 class="section-title">Areas of Expertise</h2>
+    <p class="section-intro">Building the intersection of responsible technology, operational excellence, and social justice through evidence-based strategy and inclusive innovation.</p>
+    
+    <div class="expertise-grid">
+      <div class="expertise-item">
+        <h3>AI Development & Applications</h3>
+        <ul>
+          <li>Custom GPT development for career navigation and accessibility</li>
+          <li>JavaScript/React application development for neurodivergent users</li>
+          <li>Prompt engineering and model training on domain-specific content</li>
+          <li>Natural language processing for personalized recommendations</li>
+          <li>User experience design for AI-powered tools</li>
+          <li>Assessment framework integration and synthesis</li>
+        </ul>
+      </div>
+
+      <div class="expertise-item">
+        <h3>AI Governance & Policy Implementation</h3>
+        <ul>
+          <li>AI policy frameworks for federal agencies</li>
+          <li>Plain-language intake forms for AI application review</li>
+          <li>Cross-bureau coordination on AI ethics and equity</li>
+          <li>Risk assessment for API integration and security policy</li>
+          <li>Logic model design for accessible technology systems</li>
+          <li>Executive briefings on AI implementation strategy</li>
+        </ul>
+      </div>
+
+      <div class="expertise-item">
+        <h3>Operations & Change Management</h3>
+        <ul>
+          <li>Large-scale organizational transformation</li>
+          <li>Process optimization and automation</li>
+          <li>Vendor and contract management (IDIQ)</li>
+          <li>Performance metrics and dashboard design</li>
+          <li>Cross-functional stakeholder coordination</li>
+        </ul>
+      </div>
+
+      <div class="expertise-item">
+        <h3>Research & Analysis</h3>
+        <ul>
+          <li>Computational social science methods</li>
+          <li>Mixed-method research design</li>
+          <li>Qualitative analysis (Atlas.ti)</li>
+          <li>Data visualization and storytelling</li>
+          <li>Policy impact evaluation</li>
+        </ul>
+      </div>
+
+      <div class="expertise-item">
+        <h3>Equity & Inclusion</h3>
+        <ul>
+          <li>DEIA strategy and implementation</li>
+          <li>Equity-centered data collection</li>
+          <li>Institutional discrimination analysis</li>
+          <li>Community engagement and trust-building</li>
+          <li>Inclusive design and accessibility</li>
+        </ul>
+      </div>
+
+      <div class="expertise-item">
+        <h3>UX Research & Design</h3>
+        <ul>
+          <li>Customer experience mapping</li>
+          <li>User-centered design methodologies</li>
+          <li>Service design and journey mapping</li>
+          <li>Usability testing and iteration</li>
+          <li>Accessibility compliance</li>
+        </ul>
+      </div>
+
+      <div class="expertise-item">
+        <h3>Public Policy & Advocacy</h3>
+        <ul>
+          <li>Economic policy analysis</li>
+          <li>Legislative research and advocacy</li>
+          <li>Interagency coordination</li>
+          <li>Regulatory compliance frameworks</li>
+          <li>Public-private partnership development</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects-section">
+    <h2 class="section-title">Featured Projects</h2>
+
+    <div class="project-category">
+      <h3 class="category-title">AI Development Projects</h3>
+
+      <div class="project">
+        <div class="project-header">
+          <h3>USAID Work Portfolio GPT</h3>
+          <div class="project-tags">
+            <span class="tag">Custom GPT</span>
+            <span class="tag">Career Tools</span>
+            <span class="tag">Knowledge Management</span>
+            <span class="tag">NLP</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-block">
+            <h4>The Challenge</h4>
+            <p>Career transitions require articulating complex professional experience across different contexts and audiences. Traditional resumes fail to capture the depth of government work, and manually tailoring applications is time-intensive and cognitively draining.</p>
+          </div>
+          <div class="project-block">
+            <h4>The Solution</h4>
+            <ul>
+              <li>Built custom GPT trained on comprehensive work portfolio</li>
+              <li>Natural language processing to extract relevant experience</li>
+              <li>Reframes accomplishments for different sectors</li>
+              <li>Cost-effective solution using standard OpenAI subscription</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>The Impact</h4>
+            <p>Created replicable model for professionals to build personal AI assistants. Demonstrates how low-cost AI can democratize access to sophisticated career support. <a href="https://chatgpt.com/g/g-682f2d417984819186559df920341dd1-folayemi-agbede-s-work-at-usaid" target="_blank" class="project-link">View Project</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <h3>Undistracted DIY™</h3>
+          <div class="project-tags">
+            <span class="tag">Custom GPT</span>
+            <span class="tag">Accessibility</span>
+            <span class="tag">Home Improvement</span>
+            <span class="tag">Decision Support</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-block">
+            <h4>The Challenge</h4>
+            <p>Home improvement projects require synthesizing technical specifications and safety requirements—cognitive tasks particularly challenging for people with ADHD or executive function differences.</p>
+          </div>
+          <div class="project-block">
+            <h4>The Solution</h4>
+            <ul>
+              <li>Custom GPT trained on technical specifications</li>
+              <li>Breaks complex DIY decisions into manageable decision trees</li>
+              <li>Provides safety-first guidance with clear thresholds</li>
+              <li>Adapts recommendations based on user skill level</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>The Impact</h4>
+            <p>Enables neurodivergent homeowners to navigate home improvement with confidence and safety. <a href="https://chatgpt.com/g/g-67ed32058a0c81918c72fe7cce474f3d-undistracted-diytm" target="_blank" class="project-link">View Project</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <h3>abAIde™ Career Coaching Application</h3>
+          <div class="project-tags">
+            <span class="tag">Custom GPT</span>
+            <span class="tag">Career Development</span>
+            <span class="tag">NLP</span>
+            <span class="tag">Assessment Integration</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-block">
+            <h4>The Challenge</h4>
+            <p>Career transitions require synthesizing insights from multiple assessment frameworks. Traditional career coaching is expensive and inaccessible, particularly for underrepresented professionals navigating complex career pivots.</p>
+          </div>
+          <div class="project-block">
+            <h4>The Solution</h4>
+            <ul>
+              <li>Custom GPT trained on 1,500+ pages of career development content</li>
+              <li>Synthesizes multiple assessment frameworks</li>
+              <li>Creates personalized recommendations based on market trends</li>
+              <li>Interactive coaching adapting to individual career stages</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>The Impact</h4>
+            <p>Democratizes access to personalized career coaching for professionals who cannot afford traditional coaching services.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <h3>CyncUp™: Heritage Bike Route Planner</h3>
+          <div class="project-tags">
+            <span class="tag">Civic Tech</span>
+            <span class="tag">Cultural Preservation</span>
+            <span class="tag">GIS/Mapping</span>
+            <span class="tag">Python</span>
+            <span class="tag">In Development</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-block">
+            <h4>The Challenge</h4>
+            <p>African American heritage sites face erasure through gentrification and organized attacks on accurate historical placemaking. Traditional tourism apps don't center Black heritage or integrate economic support with cultural preservation.</p>
+          </div>
+          <div class="project-block">
+            <h4>The Solution</h4>
+            <ul>
+              <li>Bike route planning using publicly available spatial data</li>
+              <li>Maps cycling routes connecting heritage sites with small businesses</li>
+              <li>Leverages shapefiles, GeoJSON, and KML data sources</li>
+              <li>Counters anti-DEIA efforts through visible, accessible history</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>The Vision</h4>
+            <p>Tool for active cultural preservation and economic justice, enabling communities to reclaim public narratives while directly supporting Black-owned businesses. CyncUp™ also enables people to enjoy the outdoors and satisfy the human need to socialize in person while engaging with history and community.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-category">
+      <h3 class="category-title">Operations, Policy & Research Projects</h3>
+
+      <div class="project">
+        <div class="project-header">
+          <h3>WhatsApp API Translation Tool for Global Safeguarding</h3>
+          <div class="project-tags">
+            <span class="tag">Logic Model Design</span>
+            <span class="tag">API Integration</span>
+            <span class="tag">Safeguarding</span>
+            <span class="tag">Accessibility</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-block">
+            <h4>The Challenge</h4>
+            <p>Communities worldwide lacked accessible channels to report harm caused by development activities. Language barriers and unfamiliar reporting systems prevented vulnerable populations from making complaints.</p>
+          </div>
+          <div class="project-block">
+            <h4>The Solution</h4>
+            <ul>
+              <li>Designed logic model integrating translation into WhatsApp API</li>
+              <li>Leveraged WhatsApp's widespread adoption as accessible channel</li>
+              <li>Created automatic translation workflows for local languages</li>
+              <li>Balanced innovation with security requirements</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>The Outcome</h4>
+            <p>While the project didn't proceed due to security policy concerns, the logic model established important precedent for accessible safeguarding mechanisms and informed future policy development.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <h3>AI Governance Framework for Federal Agency</h3>
+          <div class="project-tags">
+            <span class="tag">AI Policy</span>
+            <span class="tag">Risk Mitigation</span>
+            <span class="tag">Equity</span>
+            <span class="tag">Executive Briefing</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-block">
+            <h4>The Challenge</h4>
+            <p>Following the White House Executive Order on AI, a federal agency needed to rapidly develop governance frameworks that balanced innovation with equity considerations and regulatory compliance across global operations.</p>
+          </div>
+          <div class="project-block">
+            <h4>The Solution</h4>
+            <ul>
+              <li>Plain-language AI application intake form</li>
+              <li>Cross-bureau coordination between CIO and DEIA leadership</li>
+              <li>Policy frameworks addressing bias detection and privacy</li>
+              <li>Executive briefings translating technical requirements</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>The Impact</h4>
+            <p>Established agency-wide AI governance protocols enabling responsible innovation while protecting vulnerable populations. Framework adopted as model for task force operations.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <h3>Northern Triangle Task Force After-Action Review</h3>
+          <div class="project-tags">
+            <span class="tag">Qualitative Research</span>
+            <span class="tag">Policy Analysis</span>
+            <span class="tag">Stakeholder Engagement</span>
+            <span class="tag">Knowledge Management</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-block">
+            <h4>The Challenge</h4>
+            <p>Federal task force operated under intense public scrutiny with limited institutional memory, unclear delegation structures, and inadequate systems for coordination across multiple agencies and regions.</p>
+          </div>
+          <div class="project-block">
+            <h4>The Solution</h4>
+            <ul>
+              <li>28+ stakeholder interviews across bureaus and global missions</li>
+              <li>Systematic analysis of human capital and DEIA implications</li>
+              <li>Development of workforce forecasting models</li>
+              <li>Creation of knowledge management protocols</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>The Impact</h4>
+            <p>Delivered 15+ actionable recommendations adopted agency-wide, improving authorization pathways and establishing best practices for future emergency response operations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="background">
+    <h2 class="section-title">Professional Background</h2>
+    
+    <div class="background-grid">
+      <div class="background-item">
+        <h3>U.S. Agency for International Development (USAID)</h3>
+        <p class="background-meta">Senior Management Analyst | Acting Division Chief | 2021–2025</p>
+        <p>Led technology implementation, organizational transformation, and strategic advisory initiatives across global operations. Managed complex stakeholder networks, directed cross-functional teams, and advised C-suite leadership on AI governance, change management, and operational excellence.</p>
+        
+        <p><strong>AI/ML Implementation & Technical Leadership</strong></p>
+        <ul>
+          <li>Co-authored agency-wide AI governance strategy in response to White House Executive Order 14110, establishing frameworks for responsible ML/AI adoption that directly supported organizational performance improvement</li>
+          <li>Designed and implemented plain-language AI application intake system promoting transparency in technology adoption decisions, creating replicable framework now used across multiple bureaus</li>
+          <li>Led Salesforce CRM implementation advisory supporting digital intake process redesign, reducing information management burden and improving data quality for program staff</li>
+          <li>Co-designed Organizational Health Index dashboard (Tableau-based) incorporating performance indicators and MOCHA accountability framework, enabling data-driven management decisions</li>
+          <li>Delivered process automation recommendations eliminating 65+ hours of monthly administrative burden through workflow optimization and system integration</li>
+        </ul>
+
+        <p><strong>Client & Project Management</strong></p>
+        <ul>
+          <li>Managed research and innovation portfolio with access to roughly $600,000 in budgetary support spanning academic partnerships, international development initiatives, and organizational transformation projects worldwide</li>
+          <li>Led Northern Triangle Task Force After Action Review, conducting 28+ stakeholder interviews and delivering 15+ actionable recommendations adopted agency-wide, improving resource allocation and operational efficiency</li>
+          <li>Directed Customer Experience mapping initiative for sensitive organizational processes, converting stakeholder resistance into collaborative partnerships through trauma-informed, practitioner-centered approaches</li>
+          <li>Served as project lead for Organizational Effectiveness Review, coordinating cross-functional teams including qualitative consultants and IT contractors to deliver evidence-based workspace optimization recommendations</li>
+          <li>Maintained exceptional client satisfaction through systematic feedback integration, adaptive project management, and commitment to on-time, on-budget, high-quality deliverables</li>
+        </ul>
+
+        <p><strong>Team Development & Leadership</strong></p>
+        <ul>
+          <li>Recruited, coached, and supervised team members across multiple rotations, including 60-day assignment as Acting Division Chief for Development Partnerships team</li>
+          <li>Established structured onboarding system using briefing books and coaching sessions, reducing time-to-productivity for new analysts by 40% and building institutional knowledge retention</li>
+          <li>Created centralized project management system (Smartsheet) that clarified team responsibilities, improved documentation quality, and enhanced strategic oversight across distributed teams</li>
+          <li>Provided actionable feedback and professional development opportunities resulting in team members advancing to senior positions and expanding span of control</li>
+          <li>Mentored early career staff on technical skills including qualitative analysis (Atlas.ti), dashboard design, and stakeholder engagement</li>
+        </ul>
+
+        <p><strong>Business Development & Strategic Partnerships</strong></p>
+        <ul>
+          <li>Cultivated strategic partnerships with American University and Delaware State University, building DEIA-informed partnership pipelines with HBCUs and Hispanic-serving Institutions that resulted in new institutional collaborations</li>
+          <li>Represented USAID at convenings and stakeholder meetings, building relationships that informed future program design and partnership opportunities</li>
+          <li>Identified and pursued new engagement opportunities by connecting organizational needs with external expertise, resulting in successful consultant contracts and expanded service delivery capacity</li>
+        </ul>
+      </div>
+
+      <div class="background-item">
+        <h3>HandshakeAI</h3>
+        <p class="background-meta">AI Trainer | Handshake AI Fellowship | October 2025–Present</p>
+        <p>Contributing to advancement of large language models through prompt development and response evaluation, applying subject-matter expertise in education and workforce development to improve AI capabilities.</p>
+      </div>
+
+      <div class="background-item">
+        <h3>Digiola Creative</h3>
+        <p class="background-meta">Founder & Principal Consultant | 2020–2022</p>
+        <p>Led independent consulting practice delivering strategic analysis for nonprofit organizations, specializing in electoral strategy, organizational effectiveness, and mission-driven transformation.</p>
+      </div>
+
+      <div class="background-item">
+        <h3>Education</h3>
+        <p class="background-meta" style="font-weight: 600; font-size: 1.05rem; color: var(--text-primary);">University of Pennsylvania, Wharton School | American University | Northwestern University</p>
+        <p><strong>University of Pennsylvania, Wharton School</strong> — Public Policy Certificate Program (2025–2026)<br>
+        Economic Analysis and Policy Evaluation</p>
+        <p><strong>American University</strong> — Master of Arts, International Affairs (2012)<br>
+        Concentration: Economic Policy, Gender Studies<br>
+        Thesis: "The Cost of Pay: Sex, Employment and Policy Priorities in Mozambique"<br>
+        <em>2014 Irene Tinker-Millidge Walker Fellow</em></p>
+        <p><strong>Northwestern University</strong> — Bachelor of Arts, African American Studies<br>
+        Minor: Latin American & Caribbean Studies<br>
+        <em>2007 Melville J. Herskovits Africana Studies Scholar</em></p>
+      </div>
+
+      <div class="background-item">
+        <h3>Specialized Training & Certifications</h3>
+        <ul>
+          <li><strong>Conversation Design Institute</strong> (In Progress) — Training in conversation design for AI systems, voice and text prompt logic trees, and human-in-the-loop assistance design</li>
+          <li><strong>150-Hour Mediator Certification</strong> (In Progress) — Conflict resolution and collaborative facilitation; Charles County, Maryland</li>
+          <li><strong>Trauma-Responsive Conflict Resolution Training</strong> (2020) — 16-hour intensive covering nonviolent communication, de-escalation, and trauma-informed dialogue facilitation; Richmond Peace Education Center</li>
+          <li><strong>Race Forward Affiliate Trainer</strong> — Equity and inclusion in organizational transformation</li>
+          <li><strong>Advanced Data Analytics Training</strong> — Atlas.ti, mixed-method research, weighted analysis</li>
+        </ul>
+      </div>
+
+      <div class="background-item">
+        <h3>Technical Skills</h3>
+        <p><strong>Data Science & Analytics:</strong> Qualitative analysis (Atlas.ti), statistical analysis (SPSS, Stata), data visualization (Tableau), GIS mapping (ArcGIS), quantitative evaluation, cost-benefit analysis</p>
+        <p><strong>AI/ML Applications:</strong> Custom GPT development, prompt engineering, JavaScript, React, API integration, user experience design, natural language processing applications, conversation design</p>
+        <p><strong>Project Management:</strong> Smartsheet, Asana, Salesforce CRM, Google Workspace, Office 365, Zoom, Microsoft Teams, Slack</p>
+        <p><strong>Research Methods:</strong> Mixed-method research design, stakeholder interviews, customer journey mapping, behavioral insights, impact evaluation, weighted analysis</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <h2 class="section-title">Research & Publications</h2>
+    
+    <div class="research-grid">
+      <div class="research-item">
+        <h3>Detroit: A 2000 Census-Based Analysis</h3>
+        <p class="research-meta">GIS & Urban Planning Research | 2013</p>
+        <p>Computational analysis of spatial inequality in Detroit using ArcGIS, examining the intersection of race, employment, income, and infrastructure access. Employed nearest neighbor analysis and tract-level mapping to document systemic resource distribution patterns.</p>
+      </div>
+
+      <div class="research-item">
+        <h3>Economic Impact of the Great Recession on Communities of Color</h3>
+        <p class="research-meta">Center for American Progress | 2010–2011</p>
+        <p>Co-authored groundbreaking research examining disproportionate effects of economic downturn on communities of color. Widely cited in academic literature including Harvard Law Review, congressional testimony, and mainstream media.</p>
+      </div>
+
+      <div class="research-item">
+        <h3>Building Demand for Math Literacy</h3>
+        <p class="research-meta">International Journal of Urban Learning Technology | Spring 2008</p>
+        <p>Co-authored with Melanie L. West, Barbara P. Moss, and Naama Lewis. Research examining culturally responsive math education using video-game based platform with hip hop-inspired themes.</p>
+      </div>
+
+      <div class="research-item">
+        <h3>Selected Center for American Progress Publications</h3>
+        <p class="research-meta">Center for American Progress | 2010–2011</p>
+        <p>Key publications including <a href="https://www.americanprogress.org/article/no-more-dreams-deferred/" target="_blank" class="project-link">"No More DREAMs Deferred: African Immigrants Make Their DREAM Act Case"</a> (with Ann Garcia); <a href="https://www.americanprogress.org/article/infographic-the-growth-of-asian-american-and-pacific-islander-communities/" target="_blank" class="project-link">"Infographic: The Growth of Asian American and Pacific Islander Communities"</a>; <a href="https://www.americanprogress.org/article/beyond-recovery-for-gulf-coast-communities-of-color/" target="_blank" class="project-link">"Beyond Recovery for Gulf Coast Communities of Color"</a>; <a href="https://www.americanprogress.org/article/the-state-of-communities-of-color-in-the-u-s-economy-3/" target="_blank" class="project-link">"The State of Communities of Color in the U.S. Economy"</a> (with Christian Weller and Jaryn Fields)</p>
+      </div>
+
+      <div class="research-item">
+        <h3>The Cost of Pay: Sex, Employment and Policy Priorities in Mozambique</h3>
+        <p class="research-meta">Master's Thesis, American University | 2012</p>
+        <p>Analysis of gendered employment patterns and economic policy in Mozambique's private sector development. Examined nine years of economic data using equity lens to evaluate job creation outcomes.</p>
+      </div>
+
+      <div class="research-item">
+        <h3>Equity-Centered Data Collection in International Development</h3>
+        <p class="research-meta">USAID Bureau for Latin America and the Caribbean | 2023</p>
+        <p>Produced guidance on disaggregated data methods to capture socioeconomic marginalization of Afro-descendant and Indigenous populations. Framework addresses privacy protection and cultural sensitivity.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <h2 class="section-title">Let's Connect</h2>
+    <p>Interested in collaboration on AI governance, operations transformation, equity-centered research, or public policy innovation? Open to opportunities in cutting-edge organizations prioritizing social impact, information privacy, and responsible technology development.</p>
+    <div class="contact-buttons">
+      <a href="mailto:hire.folayemiagbede@gmail.com" class="contact-btn contact-btn-primary">Email Me</a>
+      <a href="https://www.linkedin.com/in/folayemiagbede/" class="contact-btn contact-btn-secondary" target="_blank">LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Folayemi Agbede. All rights reserved.</p>
+  </footer>
+</body>
 </html>
