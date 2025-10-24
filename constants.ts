@@ -157,8 +157,6 @@ export const PROJECTS_DATA: ProjectCategory[] = [
                 ],
                 impact: 'Established agency-wide AI governance protocols enabling responsible innovation while protecting vulnerable populations. Framework adopted as model for task force operations.'
             },
-        ]
-    }
 ];
 
 export const BACKGROUND_DATA: BackgroundItem[] = [
