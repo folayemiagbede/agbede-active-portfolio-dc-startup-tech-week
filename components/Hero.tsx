@@ -6,7 +6,7 @@ const Hero: React.FC = () => {
     <section className="min-h-screen flex items-center max-w-[1400px] mx-auto px-6 md:px-12 pt-32 pb-10">
       <div className="max-w-4xl">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-tight tracking-[-2px] mb-8">
-          Strategic Operations Leader & AI Governance Expert
+          Operations & AI Strategy
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl text-[#666] mb-12 font-light leading-relaxed">
           Bridging technology, policy, and social impact through operations excellence, computational social science, and equity-centered design.
